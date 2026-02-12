@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* @custom-variant dark (&:is(.dark *)); */
+
+/* Light Theme */
+:root {
+  --color-primary: #afcbff85;
+  --color-primary-light: #4b6cb7;
+  --color-secondary: #c9a76c;
+  --color-accent: #afcbff;
+  --color-background: #ffffff;
+  --color-background-alt: #f4f7fb;
+  --color-text-primary: #1b1b1f;
+  --color-text-secondary: #404a5a;
+}
+
+/* Dark Theme */
+:root.dark {
+  --color-primary: #102134;
+  --color-primary-light: #1a293f;
+  --color-secondary: #896f3d;
+  --color-accent: #404751;
+  --color-background: #0b1626;
+  --color-background-alt: #1a293f;
+  --color-text-primary: #f8fbff;
+  --color-text-secondary: #afcbff;
+}
