@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
     <button
       onClick={handleSwitch}
       disabled={isPending}
-      className="cursor-pointer mt-1.5"
+      className="cursor-pointer"
       title={locale === "en" ? "Switch to Arabic" : "Switch to English"}
     >
       <Globe className="h-5 w-5" />

@@ -6,7 +6,7 @@
 
 /* Light Theme */
 :root {
-  --color-primary: #afcbff85;
+  --color-primary: #f0f4ff;
   --color-primary-light: #4b6cb7;
   --color-secondary: #c9a76c;
   --color-accent: #afcbff;
@@ -14,6 +14,7 @@
   --color-background-alt: #f4f7fb;
   --color-text-primary: #1b1b1f;
   --color-text-secondary: #404a5a;
+  --hero: #3e4c63;
 }
 
 /* Dark Theme */
@@ -26,4 +27,5 @@
   --color-background-alt: #1a293f;
   --color-text-primary: #f8fbff;
   --color-text-secondary: #afcbff;
+  --hero: #afcbff80;
 }

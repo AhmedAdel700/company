@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import LanguageSwitcher from "../Custom/LanguageSwitcher";
@@ -15,14 +15,10 @@ interface HeaderProps {
 
 export default function Header({ type = "popup" }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
-  const navRef = useRef<HTMLDivElement>(null);
-  const langRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
   const t = useTranslations("header");
-
   const { theme, setTheme } = useTheme();
 
-  // Nav items now link to pages (remove scroll logic)
   const navItems = [
     { name: t("Home"), href: "/home" },
     { name: t("About"), href: "/about" },
@@ -34,42 +30,34 @@ export default function Header({ type = "popup" }: HeaderProps) {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-99 bg-(--color-primary) text-(--color-text-primary) md:py-2 transition-all"
+      className="fixed top-0 left-0 right-0 z-50 text-(--color-text-primary) md:py-2 transition-all"
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between relative">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-bold transition-all duration-300 hover:scale-105 text-(--color-text-primary)"
+          className="flex items-center gap-2 font-bold text-lg transition-transform duration-300 hover:scale-105"
         >
           Logo
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <div ref={navRef} className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="relative text-base font-medium transition-all duration-300 hover:scale-105 hover:text-(--color-secondary) text-(--color-text-primary)"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 h-0.5 bg-(--color-primary) rounded-full w-0 group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
-          </div>
-
-          {/* Language Switcher + Theme Switcher */}
-          <div className="flex items-center gap-4">
-            <div
-              ref={langRef}
-              className="transition-all duration-300 hover:scale-105"
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="relative text-base font-medium transition-transform duration-300 hover:scale-105 hover:text-(--color-secondary)"
             >
-              <LanguageSwitcher />
-            </div>
+              {item.name}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-(--color-secondary) rounded-full group-hover:w-full transition-all duration-300" />
+            </Link>
+          ))}
 
-            {/* Theme Switcher Icon */}
+          {/* Buttons: Language + Theme */}
+          <div className="flex items-center gap-6">
+            <LanguageSwitcher />
+
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="rounded-full transition-colors cursor-pointer"
