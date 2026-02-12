@@ -148,7 +148,7 @@ export default function CitiesSlider() {
         </div>
 
         {/* Slider */}
-        <div className="relative h-[560px] sm:h-[620px] mb-12">
+        <div className="relative h-140 sm:h-155 mb-12">
           <div className="absolute inset-0 flex items-center justify-center">
             {getVisibleCities().map((city) => {
               const isActive = city.position === 0;
@@ -166,7 +166,7 @@ export default function CitiesSlider() {
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                 >
-                  <div className="w-[85vw] sm:w-[420px] h-[520px] sm:h-[600px] rounded-3xl overflow-hidden bg-(--color-background) border-2 border-(--color-primary-light) shadow-2xl">
+                  <div className="w-[85vw] sm:w-105 h-130 sm:h-150 rounded-3xl overflow-hidden bg-(--color-background) border-2 border-(--color-primary-light) shadow-2xl">
                     {/* Image */}
                     <div className="relative h-72 sm:h-80 overflow-hidden">
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
@@ -216,7 +216,10 @@ export default function CitiesSlider() {
                         </div>
                       </div>
 
-                      <button className="w-full flex items-center justify-center gap-2 py-3 bg-linear-to-r from-(--color-primary-light) to-(--color-secondary) text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300">
+                      <button
+                        className="w-full flex items-center justify-center gap-2 py-3 bg-linear-to-r from-(--color-primary-light) to-(--color-secondary) text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300"
+                        suppressHydrationWarning
+                      >
                         View Properties
                         <ArrowRight className="w-4 h-4" />
                       </button>
@@ -230,14 +233,16 @@ export default function CitiesSlider() {
           {/* Arrows (hidden on mobile) */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute -left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
+            className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
+            suppressHydrationWarning
           >
             <ChevronLeft className="w-5 h-5 text-(--color-text-primary)" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute -right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
+            className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
+            suppressHydrationWarning
           >
             <ChevronRight className="w-5 h-5 text-(--color-text-primary)" />
           </button>
@@ -248,7 +253,10 @@ export default function CitiesSlider() {
           <p className="text-(--color-text-secondary) mb-4">
             Can’t find your city? We cover 50+ locations nationwide
           </p>
-          <button className="inline-flex items-center gap-3 px-6 py-3 bg-(--color-background) border-2 border-(--color-primary-light) rounded-xl font-semibold hover:scale-105 transition-all">
+          <button
+            className="inline-flex items-center gap-3 px-6 py-3 bg-(--color-background) border-2 border-(--color-primary-light) rounded-xl font-semibold hover:scale-105 transition-all"
+            suppressHydrationWarning
+          >
             Explore All Cities
             <ArrowRight className="w-4 h-4" />
           </button>

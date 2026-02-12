@@ -25,6 +25,7 @@ export default function LanguageSwitcher() {
       disabled={isPending}
       className="cursor-pointer"
       title={locale === "en" ? "Switch to Arabic" : "Switch to English"}
+      suppressHydrationWarning
     >
       <Globe className="h-5 w-5" />
       <span className="sr-only">{t("Switch Language")}</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import LanguageSwitcher from "../Custom/LanguageSwitcher";
@@ -26,6 +26,12 @@ export default function Header({ type = "popup" }: HeaderProps) {
     { name: t("Projects"), href: "/projects" },
     { name: t("Contact"), href: "/contact-us" },
   ];
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header
@@ -63,10 +69,12 @@ export default function Header({ type = "popup" }: HeaderProps) {
               className="rounded-full transition-colors cursor-pointer"
               aria-label="Toggle Theme"
             >
-              {theme === "dark" ? (
-                <Sun className="w-5 h-5 text-yellow-400" />
-              ) : (
-                <Moon className="w-5 h-5 text-(--color-text-primary)" />
+              {mounted && (
+                theme === "dark" ? (
+                  <Sun className="w-5 h-5 text-yellow-400" />
+                ) : (
+                  <Moon className="w-5 h-5 text-(--color-text-primary)" />
+                )
               )}
             </button>
           </div>

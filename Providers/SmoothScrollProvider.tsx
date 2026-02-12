@@ -28,7 +28,9 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProps) {
   }, []);
 
   return (
-    <div id="smooth-wrapper" className="bg-(--color-primary)">
+    <div
+      id="smooth-wrapper"
+    >
       <div id="smooth-content">{children}</div>
     </div>
   );
