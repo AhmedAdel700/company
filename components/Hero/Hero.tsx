@@ -3,12 +3,13 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { MapPin, ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import hero1 from "@/app/images/hero1.avif";
 import hero2 from "@/app/images/hero2.avif";
 import hero3 from "@/app/images/hero3.avif";
+import HeroSearch from "./HeroSearch";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,7 +63,7 @@ export default function Hero() {
 
     // Parallax effect on scroll
     gsap.to(".parallax-bg", {
-      yPercent: 20,
+      yPercent: 30,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -108,10 +109,10 @@ export default function Hero() {
             alt="Luxury Real Estate"
             fill
             priority
-            className="object-cover opacity-90"
+            className="object-cover"
           />
-          {/* Elegant Gradient Overlay */}
-          <div className="absolute inset-0 bg-linear-to-r from-(--color-background)/90 via-(--color-background)/60 to-transparent" />
+          {/* Clean Cinematic Overlay - Preserves image clarity while ensuring text contrast */}
+          <div className="absolute inset-0 bg-linear-to-r from-(--color-background) via-(--color-background)/20 to-transparent" />
           <div className="absolute inset-0 bg-linear-to-t from-(--color-background) via-transparent to-transparent" />
         </div>
       </div>
@@ -120,7 +121,7 @@ export default function Hero() {
         {/* ===== Main Content Area ===== */}
         <div ref={textRef} className="lg:w-1/2 space-y-10">
           {/* Badge */}
-          <div className="hero-text-element opacity-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-(--color-background-alt)/80 backdrop-blur-md border border-(--color-primary-light)/30 shadow-sm">
+          <div className="hero-text-element opacity-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-(--color-background-alt)/80 border border-(--color-primary-light)/30 shadow-sm">
             <Star className="w-4 h-4 text-(--color-secondary) fill-(--color-secondary)" />
             <span className="text-sm font-medium tracking-wide text-(--color-text-primary) uppercase">
               Premium Real Estate
@@ -144,26 +145,8 @@ export default function Hero() {
           </p>
 
           {/* Search Bar - Modern Glassmorphism */}
-          <div className="hero-text-element opacity-0 relative max-w-lg">
-            <div className="absolute -inset-1 bg-linear-to-r from-(--color-primary-light) to-(--color-secondary) rounded-2xl blur opacity-25" />
-            <div className="relative flex items-center p-2 bg-(--color-background)/80 backdrop-blur-xl border border-(--color-text-secondary)/10 rounded-xl shadow-2xl">
-              <MapPin className="w-6 h-6 ml-4 text-(--color-secondary)" />
-              <input
-                type="text"
-                placeholder="Search by location..."
-                className="w-full px-4 py-3 bg-transparent border-none outline-none text-(--color-text-primary) placeholder:text-(--color-text-secondary)/60 text-lg"
-                suppressHydrationWarning
-              />
-              <button
-                className="group relative overflow-hidden px-6 py-3 bg-(--color-text-primary) text-(--color-background) rounded-lg font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
-                suppressHydrationWarning
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Explore{" "}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </button>
-            </div>
+          <div className="hero-text-element opacity-0 relative max-w-lg z-50">
+             <HeroSearch />
           </div>
 
           {/* Stats Bar */}
@@ -217,7 +200,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-60" />
 
             {/* Floating Badge inside Main Image */}
-            <div className="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-white/10 border border-white/20 p-4 rounded-xl">
+            <div className="absolute bottom-6 left-6 right-6 backdrop-blur-sm bg-white/10 border border-white/20 p-4 rounded-xl">
               <div className="flex items-center justify-between text-white">
                 <div>
                   <p className="text-xs uppercase tracking-wider opacity-80">
@@ -250,7 +233,7 @@ export default function Hero() {
               fill
               className="object-cover"
             />
-            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur text-black p-2 rounded-full shadow-lg">
+            <div className="absolute top-4 right-4 bg-white/90 text-black p-2 rounded-full shadow-lg">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
             </div>
           </div>

@@ -19,7 +19,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProps) {
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper", // can be removed if using the default wrapper
       content: "#smooth-content", // can be removed if using the default content
-      smooth: 1.5,
+      smooth: 1.2,
       effects: true,
       normalizeScroll: false, // Disabled to prevent hijacking native scroll behavior
     });
