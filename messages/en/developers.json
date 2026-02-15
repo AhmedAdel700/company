@@ -1,0 +1,13 @@
+{
+  "eyebrow": "Market Leaders",
+  "heroTitle": "Top",
+  "heroHighlight": "Developers",
+  "description": "Partnering with the most trusted names in real estate to bring you exceptional properties.",
+  "searchPlaceholder": "Search by developer name...",
+  "resultsFound": "Developers Found",
+  "pageInfo": "Page {current} of {total}",
+  "projects": "Projects",
+  "viewDetails": "View Details",
+  "noResults": "No developers found",
+  "noResultsDesc": "Try adjusting your search query."
+}

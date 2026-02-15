@@ -1,4 +1,5 @@
 import img from "@/app/images/hero1.avif";
+import logo from "@/app/images/logo.jpg";
 
 export const cities = [
   {
@@ -144,4 +145,55 @@ export const compounds = [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
     trend: `+${(i % 15) + 5}%`,
   })),
+];
+
+export const developers = [
+  {
+    id: 1,
+    name: "Emaar Misr",
+    logo: logo, // Placeholder until we have real logos or import them
+    projects: 15,
+  },
+  {
+    id: 2,
+    name: "Palm Hills",
+    logo: logo,
+    projects: 12,
+  },
+  {
+    id: 3,
+    name: "TMG",
+    logo: logo,
+    projects: 20,
+  },
+  {
+    id: 4,
+    name: "Mountain View",
+    logo: logo,
+    projects: 10,
+  },
+  {
+    id: 5,
+    name: "Sodic",
+    logo: logo,
+    projects: 14,
+  },
+  {
+    id: 6,
+    name: "Orascom",
+    logo: logo,
+    projects: 9,
+  },
+  {
+    id: 7,
+    name: "Hyde Park",
+    logo: logo,
+    projects: 8,
+  },
+  {
+    id: 8,
+    name: "City Edge",
+    logo: logo,
+    projects: 11,
+  },
 ];
