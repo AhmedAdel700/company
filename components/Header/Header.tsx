@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import LanguageSwitcher from "../Custom/LanguageSwitcher";
 import DrawerMenu from "./DrawerMenu";
 import PopupMenu from "./PopupMenu";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 interface HeaderProps {
@@ -17,13 +17,14 @@ export default function Header({ type = "popup" }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
   const locale = useLocale();
   const t = useTranslations("header");
+  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
   const navItems = [
-    { name: t("Home"), href: "/home" },
-    { name: t("About"), href: "/about" },
-    { name: t("Services"), href: "/services" },
-    { name: t("Projects"), href: "/projects" },
+    { name: t("Home"), href: "/" },
+    { name: t("Cities"), href: "/cities" },
+    { name: t("Developers"), href: "/developers" },
+    { name: t("Compounds"), href: "/compounds" },
     { name: t("Contact"), href: "/contact-us" },
   ];
 
@@ -65,16 +66,32 @@ export default function Header({ type = "popup" }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="relative text-base font-medium transition-transform duration-300 hover:scale-105 hover:text-[var(--color-secondary)]"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[var(--color-secondary)] rounded-full group-hover:w-full transition-all duration-300" />
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
+
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`relative text-base font-medium transition-all duration-300 hover:scale-105 ${
+                  isActive
+                    ? "text-[var(--color-secondary)] font-bold scale-105"
+                    : "hover:text-[var(--color-secondary)]"
+                }`}
+              >
+                {item.name}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "w-full bg-[var(--color-secondary)]"
+                      : "w-0 bg-[var(--color-secondary)] group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
 
           {/* Buttons: Language + Theme */}
           <div className="flex items-center gap-6">

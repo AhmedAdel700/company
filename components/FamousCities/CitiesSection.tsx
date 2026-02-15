@@ -1,15 +1,15 @@
 "use client";
 
 import {
-  MapPin,
-  ArrowRight,
-  TrendingUp,
   ChevronLeft,
   ChevronRight,
+  MapPin,
+  ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
 import { cities } from "@/lib/data";
-import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import CityCard from "@/components/CityCard/CityCard";
 
 export default function CitiesSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,7 +57,7 @@ export default function CitiesSlider() {
       onTouchEnd={handleTouchEnd}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <MapPin className="w-5 h-5 text-[var(--color-secondary)]" />
@@ -77,13 +77,14 @@ export default function CitiesSlider() {
             </p>
           </div>
 
-          <button
+          <Link
+            href={"/cities"}
             className="hidden md:flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:gap-4 text-white"
             style={{ backgroundColor: "var(--color-secondary)" }}
           >
             Explore All Cities
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
 
         {/* Slider */}
@@ -106,72 +107,8 @@ export default function CitiesSlider() {
                   }}
                 >
                   {/* CARD */}
-                  <div className="w-[85vw] sm:w-105 min-h-140 sm:h-150 rounded-3xl overflow-hidden border-2 border-(--border-color) shadow-xl flex flex-col">
-                    {/* Image */}
-                    <div className="relative h-72 sm:h-80 overflow-hidden">
-                      <Image
-                        src={city.image}
-                        alt="City Image"
-                        className="absolute inset-0 h-full w-full object-cover"
-                        width={400}
-                        height={400}
-                      />
-
-                      {city.trending && (
-                        <div
-                          className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full"
-                          style={{ background: "var(--color-secondary)" }}
-                        >
-                          <TrendingUp className="w-4 h-4 text-white" />
-                          <span className="text-xs font-bold text-white">
-                            Hot Market
-                          </span>
-                        </div>
-                      )}
-
-                      <div className="absolute bottom-4 left-4">
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                          {city.name}
-                        </h3>
-                        <div className="flex items-center gap-2 text-white/90 text-sm">
-                          <MapPin className="w-4 h-4" />
-                          {city.region}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex flex-col flex-1 p-5 bg-(--color-background-alt)">
-                      <p className="text-sm mb-5 text-(--color-text-secondary)">
-                        {city.description}
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-3 mb-5">
-                        <div className="p-3 rounded-xl border border-(--color-secondary)">
-                          <div className="text-xs text-(--color-text-secondary)">
-                            Properties
-                          </div>
-                          <div className="text-xl font-bold text-(--color-text-primary)">
-                            {city.properties}+
-                          </div>
-                        </div>
-
-                        <div className="p-3 rounded-xl border border-(--color-secondary)">
-                          <div className="text-xs text-(--color-text-secondary)">
-                            Avg. Price
-                          </div>
-                          <div className="text-xl font-bold text-(--color-text-primary)">
-                            {city.averagePrice}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Button always at bottom */}
-                      <button className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)">
-                        View Properties
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className="w-[85vw] sm:w-105 min-h-140 sm:h-135">
+                    <CityCard city={city} />
                   </div>
                 </div>
               );
@@ -200,13 +137,14 @@ export default function CitiesSlider() {
             Can not find your city? We cover 50+ locations nationwide
           </p>
 
-          <button
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-white"
+          <Link
+            href={"/cities"}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-white cursor-pointer"
             style={{ backgroundColor: "var(--color-secondary)" }}
           >
             Explore All Cities
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

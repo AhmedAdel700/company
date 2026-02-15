@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import LanguageSwitcher from "../Custom/LanguageSwitcher";
 import { Menu, X, ChevronRight } from "lucide-react";
@@ -14,6 +14,7 @@ interface PopupMenuProps {
 
 export default function PopupMenu({ navItems }: PopupMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
 
@@ -69,17 +70,33 @@ export default function PopupMenu({ navItems }: PopupMenuProps) {
           ref={linksRef}
         >
           <div className="flex-1 flex flex-col gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="menu-link group flex items-center justify-between p-4 text-2xl font-medium rounded-xl hover:bg-accent/50 transition-colors opacity-0"
-              >
-                <span>{item.name}</span>
-                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`menu-link group flex items-center justify-between p-4 text-2xl font-medium rounded-xl transition-colors opacity-0 ${
+                    isActive
+                      ? "bg-(--color-secondary)/10 text-(--color-secondary)"
+                      : "hover:bg-accent/50"
+                  }`}
+                >
+                  <span>{item.name}</span>
+                  <ChevronRight
+                    className={`h-5 w-5 transition-colors ${
+                      isActive
+                        ? "text-(--color-secondary)"
+                        : "text-muted-foreground group-hover:text-(--color-secondary)"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           <div className="menu-link p-4 mt-auto border-t border-border/50 flex items-center justify-between opacity-0">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import {
   Sheet,
   SheetContent,
@@ -23,6 +23,7 @@ export default function DrawerMenu({ navItems, locale }: DrawerMenuProps) {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const t = useTranslations("header");
+  const pathname = usePathname();
 
   const drawerSide = locale === "ar" ? "left" : "right";
   const menuAlignment =
@@ -57,16 +58,26 @@ export default function DrawerMenu({ navItems, locale }: DrawerMenuProps) {
         {/* Navigation Links */}
         <div className="flex-1 overflow-y-auto">
           <div className={`flex flex-col gap-4 ${menuAlignment} pr-2`}>
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href} // Normal page navigation
-                className={`text-xl font-medium py-3 px-4 w-full text-center rounded-md border border-(--color-text-primary) text-(--color-text-primary) hover:bg-(--color-primary) hover:text-(--color-background) transition-all duration-200`}
-                onClick={() => setOpen(false)} // Close drawer on click
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+              
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href} // Normal page navigation
+                  className={`text-xl font-medium py-3 px-4 w-full text-center rounded-md border transition-all duration-200 ${
+                    isActive
+                      ? "bg-(--color-primary) text-(--color-background) border-transparent font-bold"
+                      : "border-(--color-text-primary) text-(--color-text-primary) hover:bg-(--color-primary) hover:text-(--color-background)"
+                  }`}
+                  onClick={() => setOpen(false)} // Close drawer on click
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
         </div>
 
