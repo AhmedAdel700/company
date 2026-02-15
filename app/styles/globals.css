@@ -3,27 +3,25 @@
 @import "shadcn/tailwind.css";
 
 :root {
-  --color-primary: #e0f2fe;
-  --color-primary-light: #0369a1;
-  --color-secondary: #7a581d;
-  --color-accent: #0ea5e9;
-  --color-background: #f0f9ff;
-  --color-background-alt: #f8fafc;
-  --color-text-primary: #082f49;
-  --color-text-secondary: #0c4a6e;
-  --hero: #0c4a6e;
-  --border-color: #3e556b;
-
+  --color-primary: #f0f9ff;
+  --color-primary-light: #7dd3fc;
+  --color-secondary: #0ea5e9;
+  --color-accent: #0284c7;
+  --color-background: #ffffff;
+  --color-background-alt: #f0f9ff;
+  --color-text-primary: #0c4a6e;
+  --color-text-secondary: #075985;
+  --hero: #0369a1;
+  --border-color: #bae6fd;
   /* New gradient colors for section */
-  --gradient-start: #dbeafe;
+  --gradient-start: #f0f9ff;
   --gradient-mid: #e0f2fe;
-  --gradient-end: #cbd5e1;
-
+  --gradient-end: #bae6fd;
   /* Card gradient colors */
-  --card-bg-start: #e8f4fb;
-  --card-bg-end: #d1e7f5;
-  --card-alt-start: #d6ebf7;
-  --card-alt-end: #c5dff0;
+  --card-bg-start: #f0f9ff;
+  --card-bg-end: #e0f2fe;
+  --card-alt-start: #e0f2fe;
+  --card-alt-end: #bae6fd;
 }
 
 :root.dark {
@@ -51,6 +49,15 @@
 
 body {
   min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #f0f9ff 50%,
+    #e0f2fe 100%
+  );
+}
+
+:root.dark body {
   background: var(--color-primary);
 }
 
@@ -62,12 +69,12 @@ button {
   background:
     radial-gradient(
       ellipse at top left,
-      rgba(56, 189, 248, 0.2) 0%,
+      rgba(14, 165, 233, 0.08) 0%,
       transparent 50%
     ),
     radial-gradient(
       ellipse at bottom right,
-      rgba(3, 105, 161, 0.15) 0%,
+      rgba(56, 189, 248, 0.06) 0%,
       transparent 50%
     ),
     linear-gradient(

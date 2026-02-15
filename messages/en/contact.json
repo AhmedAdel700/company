@@ -19,5 +19,8 @@
   "EmailLabel": "Email",
   "PhoneLabel": "Phone",
   "AddressLabel": "Address",
-  "Address": "123 Real Estate St., New Cairo, Egypt"
+  "Address": "123 Real Estate St., New Cairo, Egypt",
+  "HeroTitle": "Get in",
+  "HeroHighlight": "Touch",
+  "HeroSubtitle": "We're here to help you find your dream property."
 }
