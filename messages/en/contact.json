@@ -1,0 +1,23 @@
+{
+  "Badge": "Get in touch",
+  "Title": "Let's Start a Conversation",
+  "Description": "Have a question or want to work together? We'd love to hear from you. Discover how we can help you find your dream property.",
+  "FullName": "Full Name",
+  "Email": "Email Address",
+  "Phone": "Phone Number",
+  "Subject": "Subject",
+  "Message": "Message",
+  "Send": "Send Message",
+  "Sending": "Sending...",
+  "Success": "Thank you! Your message has been sent successfully. We will get back to you soon.",
+  "Error": "Oops! Something went wrong. Please try again later.",
+  "PlaceholderName": "John Doe",
+  "PlaceholderEmail": "john@example.com",
+  "PlaceholderPhone": "+20 123 456 7890",
+  "PlaceholderSubject": "How can we help you?",
+  "PlaceholderMessage": "Tell us more about your inquiry...",
+  "EmailLabel": "Email",
+  "PhoneLabel": "Phone",
+  "AddressLabel": "Address",
+  "Address": "123 Real Estate St., New Cairo, Egypt"
+}

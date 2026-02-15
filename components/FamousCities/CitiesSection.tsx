@@ -8,72 +8,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
-
-const cities = [
-  {
-    id: 1,
-    name: "New York",
-    region: "New York, USA",
-    properties: 1234,
-    averagePrice: "$850K",
-    trending: true,
-    description:
-      "The city that never sleeps, featuring iconic skylines and luxury penthouses",
-    image: "/cities/new-york.jpg",
-  },
-  {
-    id: 2,
-    name: "Los Angeles",
-    region: "California, USA",
-    properties: 987,
-    averagePrice: "$1.2M",
-    trending: true,
-    description:
-      "Sun-soaked homes with stunning views and celebrity neighborhoods",
-    image: "/cities/los-angeles.jpg",
-  },
-  {
-    id: 3,
-    name: "Miami",
-    region: "Florida, USA",
-    properties: 756,
-    averagePrice: "$680K",
-    trending: false,
-    description: "Beachfront properties and vibrant urban living in paradise",
-    image: "/cities/miami.jpg",
-  },
-  {
-    id: 4,
-    name: "San Francisco",
-    region: "California, USA",
-    properties: 645,
-    averagePrice: "$1.5M",
-    trending: true,
-    description: "Tech hub with Victorian homes and breathtaking bay views",
-    image: "/cities/san-francisco.jpg",
-  },
-  {
-    id: 5,
-    name: "Chicago",
-    region: "Illinois, USA",
-    properties: 892,
-    averagePrice: "$420K",
-    trending: false,
-    description: "Architectural marvels and lakefront luxury in the Windy City",
-    image: "/cities/chicago.jpg",
-  },
-  {
-    id: 6,
-    name: "Austin",
-    region: "Texas, USA",
-    properties: 534,
-    averagePrice: "$550K",
-    trending: true,
-    description:
-      "Keep it weird with unique properties in this booming tech city",
-    image: "/cities/austin.jpg",
-  },
-];
+import { cities } from "@/lib/data";
+import Image from "next/image";
 
 export default function CitiesSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -97,7 +33,6 @@ export default function CitiesSlider() {
     return visible;
   };
 
-  // Touch Handling
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
   };
@@ -116,39 +51,43 @@ export default function CitiesSlider() {
 
   return (
     <section
-      className="py-20 bg-(--color-background-alt) relative overflow-hidden"
+      className="py-8 sm:py-12 lg:py-16 relative overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Background Orbs */}
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-(--color-primary-light) rounded-full blur-3xl opacity-10" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-(--color-secondary) rounded-full blur-3xl opacity-10" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-(--color-primary) border border-(--color-primary-light)">
-            <MapPin className="w-4 h-4 text-(--color-secondary)" />
-            <span className="text-sm font-medium text-(--color-text-primary)">
-              Top Destinations
-            </span>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <MapPin className="w-5 h-5 text-[var(--color-secondary)]" />
+              <span
+                className="text-sm font-bold uppercase tracking-wider"
+                style={{ color: "var(--color-secondary)" }}
+              >
+                Top Destinations
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text-primary)] mb-3">
+              Explore Prime Locations
+            </h2>
+            <p className="text-lg text-[var(--color-text-secondary)] max-w-xl">
+              Find your perfect home in Egypt is most sought-after cities and
+              regions
+            </p>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-(--color-text-primary)">
-            Explore Prime
-            <span className="block text-transparent bg-clip-text bg-linear-to-r from-(--color-primary-light) to-(--color-secondary)">
-              Locations
-            </span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-(--color-text-secondary) max-w-2xl mx-auto">
-            Discover exceptional properties in America’s most desirable cities
-          </p>
+          <button
+            className="hidden md:flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:gap-4 text-white"
+            style={{ backgroundColor: "var(--color-secondary)" }}
+          >
+            Explore All Cities
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Slider */}
-        <div className="relative h-140 sm:h-155 mb-12">
+        <div className="relative h-140 sm:h-155 mb-6">
           <div className="absolute inset-0 flex items-center justify-center">
             {getVisibleCities().map((city) => {
               const isActive = city.position === 0;
@@ -166,13 +105,23 @@ export default function CitiesSlider() {
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                 >
-                  <div className="w-[85vw] sm:w-105 h-130 sm:h-150 rounded-3xl overflow-hidden bg-(--color-background) border-2 border-(--color-primary-light) shadow-2xl">
+                  {/* CARD */}
+                  <div className="w-[85vw] sm:w-105 min-h-140 sm:h-150 rounded-3xl overflow-hidden border-2 border-(--border-color) shadow-xl flex flex-col">
                     {/* Image */}
                     <div className="relative h-72 sm:h-80 overflow-hidden">
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+                      <Image
+                        src={city.image}
+                        alt="City Image"
+                        className="absolute inset-0 h-full w-full object-cover"
+                        width={400}
+                        height={400}
+                      />
 
                       {city.trending && (
-                        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-(--color-secondary)">
+                        <div
+                          className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full"
+                          style={{ background: "var(--color-secondary)" }}
+                        >
                           <TrendingUp className="w-4 h-4 text-white" />
                           <span className="text-xs font-bold text-white">
                             Hot Market
@@ -192,13 +141,13 @@ export default function CitiesSlider() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 space-y-5">
-                      <p className="text-sm text-(--color-text-secondary)">
+                    <div className="flex flex-col flex-1 p-5 bg-(--color-background-alt)">
+                      <p className="text-sm mb-5 text-(--color-text-secondary)">
                         {city.description}
                       </p>
 
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="p-3 rounded-xl bg-(--color-background-alt) border border-(--color-primary-light)">
+                      <div className="grid grid-cols-2 gap-3 mb-5">
+                        <div className="p-3 rounded-xl border border-(--color-secondary)">
                           <div className="text-xs text-(--color-text-secondary)">
                             Properties
                           </div>
@@ -206,20 +155,19 @@ export default function CitiesSlider() {
                             {city.properties}+
                           </div>
                         </div>
-                        <div className="p-3 rounded-xl bg-(--color-background-alt) border border-(--color-primary-light)">
+
+                        <div className="p-3 rounded-xl border border-(--color-secondary)">
                           <div className="text-xs text-(--color-text-secondary)">
                             Avg. Price
                           </div>
-                          <div className="text-xl font-bold text-transparent bg-clip-text bg-linear-to-r from-(--color-primary-light) to-(--color-secondary)">
+                          <div className="text-xl font-bold text-(--color-text-primary)">
                             {city.averagePrice}
                           </div>
                         </div>
                       </div>
 
-                      <button
-                        className="w-full flex items-center justify-center gap-2 py-3 bg-linear-to-r from-(--color-primary-light) to-(--color-secondary) text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300"
-                        suppressHydrationWarning
-                      >
+                      {/* Button always at bottom */}
+                      <button className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)">
                         View Properties
                         <ArrowRight className="w-4 h-4" />
                       </button>
@@ -230,35 +178,34 @@ export default function CitiesSlider() {
             })}
           </div>
 
-          {/* Arrows (hidden on mobile) */}
+          {/* Arrows */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
-            suppressHydrationWarning
+            className="hidden md:flex absolute -left-13 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border-2 border-(--border-color) shadow-lg items-center justify-center cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5 text-(--color-text-primary)" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-(--color-background) border-2 border-(--color-primary-light) shadow-lg items-center justify-center"
-            suppressHydrationWarning
+            className="hidden md:flex absolute -right-13 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border-2 border-(--border-color) shadow-lg items-center justify-center cursor-pointer"
           >
             <ChevronRight className="w-5 h-5 text-(--color-text-primary)" />
           </button>
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-10">
-          <p className="text-(--color-text-secondary) mb-4">
-            Can’t find your city? We cover 50+ locations nationwide
+        <div className="text-center mt-6 md:hidden">
+          <p className="mb-6 text-(--color-text-secondary)">
+            Can not find your city? We cover 50+ locations nationwide
           </p>
+
           <button
-            className="inline-flex items-center gap-3 px-6 py-3 bg-(--color-background) border-2 border-(--color-primary-light) rounded-xl font-semibold hover:scale-105 transition-all"
-            suppressHydrationWarning
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-white"
+            style={{ backgroundColor: "var(--color-secondary)" }}
           >
             Explore All Cities
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </div>

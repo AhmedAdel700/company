@@ -28,15 +28,31 @@ export default function Header({ type = "popup" }: HeaderProps) {
   ];
 
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 text-(--color-text-primary) md:py-2 transition-all"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[var(--color-background-alt)] text-[var(--color-text-primary)] shadow-md"
+          : "bg-transparent text-[var(--color-text-primary)]"
+      }`}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -53,10 +69,10 @@ export default function Header({ type = "popup" }: HeaderProps) {
             <Link
               key={item.name}
               href={item.href}
-              className="relative text-base font-medium transition-transform duration-300 hover:scale-105 hover:text-(--color-secondary)"
+              className="relative text-base font-medium transition-transform duration-300 hover:scale-105 hover:text-[var(--color-secondary)]"
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-(--color-secondary) rounded-full group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[var(--color-secondary)] rounded-full group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
 
@@ -69,13 +85,12 @@ export default function Header({ type = "popup" }: HeaderProps) {
               className="rounded-full transition-colors cursor-pointer"
               aria-label="Toggle Theme"
             >
-              {mounted && (
-                theme === "dark" ? (
+              {mounted &&
+                (theme === "dark" ? (
                   <Sun className="w-5 h-5 text-yellow-400" />
                 ) : (
-                  <Moon className="w-5 h-5 text-(--color-text-primary)" />
-                )
-              )}
+                  <Moon className="w-5 h-5 text-[var(--color-text-primary)]" />
+                ))}
             </button>
           </div>
         </nav>

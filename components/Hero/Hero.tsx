@@ -99,7 +99,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-dvh flex items-center justify-center overflow-hidden bg-(--color-background) px-6"
+      className="relative min-h-dvh flex items-center justify-center overflow-hidden bg-(--color-background)"
     >
       {/* ===== Background Setup ===== */}
       <div className="absolute inset-0 z-0">
@@ -152,7 +152,7 @@ export default function Hero() {
           {/* Stats Bar */}
           <div
             ref={statsRef}
-            className="hero-text-element opacity-0 flex items-center gap-8 lg:gap-12 pt-8 border-t border-(--color-text-secondary)/10"
+            className="hero-text-element opacity-0 flex items-center gap-8 lg:gap-12 pt-8 border-t border-(--color-text-secondary)/10 w-fit"
           >
             <div className="hero-stats-item opacity-0">
               <p className="text-3xl font-bold text-(--color-text-primary)">

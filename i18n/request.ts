@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 const locales = ["en", "ar"] as const;
-const namespaces = ["home", "header"] as const;
+const namespaces = ["home", "header", "footer", "contact"] as const;
 
 export default getRequestConfig(async () => {
   const h = await headers();
@@ -17,8 +17,8 @@ export default getRequestConfig(async () => {
       namespaces.map(async (ns) => {
         const mod = await import(`../messages/${locale}/${ns}.json`);
         return [ns, mod.default] as const;
-      })
-    )
+      }),
+    ),
   );
 
   return { locale, messages };
