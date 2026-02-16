@@ -60,7 +60,7 @@ export default function CitiesSlider() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <MapPin className="w-5 h-5 text-[var(--color-secondary)]" />
+              <MapPin className="w-5 h-5 text-(--color-secondary)" />
               <span
                 className="text-sm font-bold uppercase tracking-wider"
                 style={{ color: "var(--color-secondary)" }}
@@ -68,10 +68,10 @@ export default function CitiesSlider() {
                 Top Destinations
               </span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text-primary)] mb-3">
+            <h2 className="text-5xl md:text-6xl font-bold text-(--color-text-primary) mb-3">
               Explore Prime Locations
             </h2>
-            <p className="text-lg text-[var(--color-text-secondary)] max-w-xl">
+            <p className="text-lg text-(--color-text-secondary) max-w-xl">
               Find your perfect home in Egypt is most sought-after cities and
               regions
             </p>

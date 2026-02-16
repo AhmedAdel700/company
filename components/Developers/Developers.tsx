@@ -29,7 +29,8 @@ export default function Developers() {
         {/* Quadruple the content to ensure extremely smooth loop without gaps or glitches */}
         {[...developers, ...developers, ...developers, ...developers].map(
           (dev, idx) => (
-            <div
+            <Link
+            href={`/developers/${dev.name}`}
               key={`${dev.id}-${idx}`}
               className="group relative bg-transparent
              overflow-hidden cursor-pointer mx-2
@@ -48,7 +49,7 @@ export default function Developers() {
                   height={400}
                 />
               </div>
-            </div>
+            </Link>
           ),
         )}
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -39,7 +40,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function CompoundDetails({ params }: { params: { id: string } }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activePlan, setActivePlan] = useState(0);
 
   const compoundId = parseInt(params?.id) || 999;
   const details = compoundDetailsData[compoundId] || compoundDetailsData[999];
@@ -123,7 +123,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
         <div className="container mx-auto px-4">
           
           {/* Desktop Version (lg and up) */}
-          <div className="hidden lg:flex gap-4 lg:h-[450px] xl:h-[600px]">
+          <div className="hidden lg:flex gap-4 lg:h-112.5 xl:h-150">
             {details.heroImages.map((img: string, idx: number) => (
               <div
                 key={idx}
@@ -152,7 +152,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
           </div>
 
           {/* Mobile/Tablet Version (below lg) */}
-          <div className="lg:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 h-[400px]">
+          <div className="lg:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 h-100">
             {details.heroImages.map((img: string, idx: number) => (
               <div
                 key={idx}
@@ -240,7 +240,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
             <div className="lg:col-span-5 section-header">
               <h2 className="text-4xl font-bold mb-8" >Strategic <span style={{ color: "var(--color-secondary)" }}>Heart</span> of {compound?.name}</h2>
               <p className="text-lg leading-relaxed mb-10" style={{ color: "var(--color-text-secondary)" }}>
-                {compound?.name} is located on the {details.location}, the most vital artery of New Cairo, granting you immediate access to Cairo's major highways and premium landmarks.
+                {compound?.name} is located on the {details.location}, the most vital artery of New Cairo, granting you immediate access to Cairo is major highways and premium landmarks.
               </p>
 
               <div className="space-y-4">
@@ -259,7 +259,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="lg:col-span-7 h-[600px] rounded-xl overflow-hidden shadow-lg relative border-4"
+            <div className="lg:col-span-7 h-150 rounded-xl overflow-hidden shadow-lg relative border-4"
                  style={{ borderColor: "var(--color-background-alt)" }}>
               {/* Google Maps Embed */}
               <iframe
@@ -296,7 +296,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
               </thead>
               <tbody className="divide-y" style={{ borderColor: "var(--border-color)" }}>
                 {details.unitTypes.map((unit: any, idx: number) => (
-                  <tr key={idx} className="transition-colors hover:bg-[var(--color-secondary-5)] border-b" style={{ borderColor: "var(--border-color)" }}>
+                  <tr key={idx} className="transition-colors hover:bg-(--color-secondary-5) border-b" style={{ borderColor: "var(--border-color)" }}>
                     <td className="p-8">
                       <div className="font-bold text-lg" style={{ color: "var(--color-text-primary)" }}>{unit.type}</div>
                     </td>
@@ -358,7 +358,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
               <div className="space-y-3">
                 {plan.details.map((detail: string, idx: number) => (
                   <div key={idx} className="flex items-start gap-4 py-4 px-5 rounded-2xl border transition-all duration-300 group-hover:border-(--color-secondary-20)" style={{ backgroundColor: "var(--color-background)", borderColor: "var(--border-color)" }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "var(--color-secondary-5)" }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: "var(--color-secondary-5)" }}>
                       <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "var(--color-secondary)" }} />
                     </div>
                     <span className="text-sm font-semibold leading-relaxed" style={{ color: "var(--color-text-primary)" }}>{detail}</span>
@@ -412,7 +412,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
           
           {/* Main Heading */}
           <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight" style={{ color: "var(--color-text-primary)" }}>
-            New Cairo's Most Desirable <span style={{ color: "var(--color-secondary)" }}>Address</span>
+            New Cairo is Most Desirable <span style={{ color: "var(--color-secondary)" }}>Address</span>
           </h2>
           
           {/* Comprehensive Description */}
@@ -451,14 +451,14 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {details.faqs.map((faq: any, idx: number) => (
-              <div key={idx} className="rounded-[2rem] border overflow-hidden transition-all duration-500"
+              <div key={idx} className="rounded-xl border overflow-hidden transition-all duration-500"
                    style={{ backgroundColor: "var(--color-background)", borderColor: "var(--border-color)" }}>
                 <button 
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-6 cursor-pointer text-left hover:bg-[var(--color-secondary-5)] transition-colors"
+                  className="w-full flex items-center justify-between p-6 cursor-pointer text-left hover:bg-(--color-secondary-5) transition-colors"
                 >
                   <span className="text-base font-bold pr-4" style={{ color: "var(--color-text-primary)" }}>{faq.q}</span>
-                  <div className="flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-lg"
+                  <div className="shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-lg"
                        style={{ 
                          backgroundColor: openFaq === idx ? "var(--color-secondary)" : "var(--color-primary)", 
                          color: openFaq === idx ? "white" : "var(--color-secondary)",
@@ -467,7 +467,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
                     <ChevronDown className="w-5 h-5" />
                   </div>
                 </button>
-                <div className={`overflow-hidden transition-all duration-700 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div className={`overflow-hidden transition-all duration-700 ease-in-out ${openFaq === idx ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="px-6 pb-6 leading-relaxed text-sm font-light" style={{ color: "var(--color-text-secondary)" }}>
                     {faq.a}
                   </div>
