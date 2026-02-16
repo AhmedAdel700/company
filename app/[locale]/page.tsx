@@ -11,9 +11,9 @@ export default function Home() {
     <main>
       <Hero />
       <CitiesSection />
+      <BestDeals />
       <FeaturedCompounds />
       <Developers />
-      <BestDeals />
       <LatestBlogs />
       <ContactSection />
     </main>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { developers } from "@/lib/data";
 import { ArrowRight, Building2, Search, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import hero1 from "@/app/images/hero1.avif";
 
 const ITEMS_PER_PAGE = 20;
@@ -14,6 +14,11 @@ export default function DevelopersPage() {
   const t = useTranslations("developers");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Filter developers based on search query
   const filteredDevelopers = useMemo(() => {

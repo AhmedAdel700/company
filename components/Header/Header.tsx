@@ -25,6 +25,8 @@ export default function Header({ type = "popup" }: HeaderProps) {
     { name: t("Cities"), href: "/cities" },
     { name: t("Developers"), href: "/developers" },
     { name: t("Compounds"), href: "/compounds" },
+    { name: t("Best Deals"), href: "/best-deals" },
+    { name: t("Blogs"), href: "/blogs" },
     { name: t("Contact"), href: "/contact-us" },
   ];
 
