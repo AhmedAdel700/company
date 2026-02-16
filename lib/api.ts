@@ -10,6 +10,7 @@ export async function getPosts(offset = 0, limit = 10) {
   const data = await response.json();
 
   // Mapping EscuelaJS products to the 'posts' format (id, title, body)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return data.map((item: any) => ({
     id: item.id,
     title: item.title,
