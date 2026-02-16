@@ -9,6 +9,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import SmoothScrollProvider from "@/Providers/SmoothScrollProvider";
 import { ThemeProvider } from "@/Providers/ThemeProvider";
+import TanStackProvider from "@/Providers/TanStackProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,24 +41,31 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      suppressHydrationWarning
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header type="drawer" />
-            <SmoothScrollProvider>
-              {children}
-              <Footer />
-            </SmoothScrollProvider>
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <TanStackProvider>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header type="drawer" />
+              <SmoothScrollProvider>
+                {children}
+                <Footer />
+              </SmoothScrollProvider>
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </TanStackProvider>
+
       </body>
     </html>
   );
