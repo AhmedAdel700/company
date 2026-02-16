@@ -135,6 +135,15 @@ export const compounds = [
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
     trend: "+13%",
   },
+  {
+    id: 999,
+    name: "The Marq Riverside",
+    location: "New Cairo",
+    properties: 250,
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop",
+    trend: "+25%",
+  },
   // Adding more compounds for pagination testing
   ...Array.from({ length: 44 }).map((_, i) => ({
     id: i + 7,
@@ -373,3 +382,143 @@ export const blogPosts = [
     category: "Lifestyle",
   },
 ];
+
+export const compoundDetailsData: Record<number, any> = {
+  999: {
+    heroImages: [
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+      "/images/hero1.avif",
+    ],
+    developer: "The Marq Communities",
+    developerStartPrice: "10,062,670",
+    resaleStartPrice: "2,700,000",
+    location: "New Cairo, South 90th",
+    delivery: "Q4 2027",
+    paymentPlan: "10% DP - 8 Years",
+    description: {
+      intro: "The Marq Riverside represents the pinnacle of luxury residential development in New Cairo, offering an unparalleled living experience that seamlessly blends classical elegance with contemporary minimalist architecture. This prestigious compound redefines modern Egyptian real estate through its commitment to excellence, innovation, and timeless design. Spanning over a vast area of meticulously planned landscapes and sophisticated structures, The Marq Riverside is not just a residence; it is a statement of prestige and a sanctuary for those who appreciate the finer things in life.",
+      sections: [
+        {
+          title: "The Vision of Modern Regency",
+          content: "The Marq Riverside is born from a vision to create a living masterpiece that stands the test of time. Inspired by the 'Modern Regency' architectural movement, the project harmonizes the grandeur of historical classical aesthetics with the sleek, functional lines of contemporary design. This unique fusion creates an environment that is both opulent and efficient, providing residents with spaces that are visually stunning yet perfectly suited for modern daily life. Every arch, every column, and every terrace has been designed with a specific purpose: to elevate the human experience through beauty and proportion. The use of premium natural materials, neutral color palettes, and expansive glass surfaces ensures that the interiors feel connected to the surrounding natural beauty, blurring the lines between indoor and outdoor living."
+        },
+        {
+          title: "Unmatched Strategic Location",
+          content: "Positioned as the 'Heart' of New Cairo, The Marq Riverside's location on the South 90th Street is arguably its most significant asset. This area has transformed into Egypt's premier hub for business, finance, and high-end living. Residents enjoy immediate proximity to the American University in Cairo (AUC), which is just 5 minutes away, ensuring a high-quality educational environment and a vibrant international community. Moreover, the project's closeness to the Middle Ring Road and the upcoming Monorail stations provides seamless connectivity to the New Administrative Capital, Downtown Cairo, and the Cairo International Airport. Whether you are commuting for work or leisure, the strategic positioning of The Marq Riverside ensures that you spend less time in traffic and more time enjoying the comforts of your home."
+        },
+        {
+          title: "Bespoke Residential Experience",
+          content: "The Marq Communities' philosophy of 'Bespoke Living' is fully realized in this flagship project. Unlike standard developments that offer cookie-cutter solutions, The Marq Riverside provides a range of residential unit types that can be tailored to individual preferences. From the 'Executive Apartments' that offer compact luxury for young achievers to the 'Family Suites' and 'Luxury Penthouses' that provide sprawling terraces and private garden spaces, every unit is a canvas for personalization. The 'Marq Bespoke' interior service allows owners to collaborate with world-class designers to select finishes, layouts, and smart home integrations that reflect their unique lifestyle. This commitment to individuality ensures that your home is a true reflection of your personality and achievements, standing as a testament to your success."
+        },
+        {
+          title: "A Resort Lifestyle Every Day",
+          content: "Life at The Marq Riverside is akin to a permanent vacation at a world-class resort. The amenity package is curated to cater to every sense and requirement. The central 'Water Boulevard' features a series of temperature-controlled infinity pools that flow through the heart of the community, creating a cooling micro-climate and a stunning visual backdrop. For the health-conscious, the 'Marq Fitness' center provides state-of-the-art cardiovascular and strength training equipment, accompanied by professional trainers and wellness consultants. The 'Signature Spa' offers a range of therapeutic treatments, from traditional massages to modern hydro-therapy, providing a sanctuary for relaxation and rejuvenation after a long day. Children are equally pampered with dedicated 'Adventure Zones' that focus on both physical play and cognitive development, all within a safe and secure environment."
+        },
+        {
+          title: "Investment Security and Growth",
+          content: "Investing in The Marq Riverside is a decision backed by data and developer prestige. The Marq Communities has established itself as a leader in high-end developments, known for delivering on promises and maintaining exceptional property values. New Cairo remains the most resilient and fastest-growing real estate market in Egypt, with south 90th street properties consistently outperforming other regions. The Marq Riverside offers a projected capital appreciation of over 25% due to its limited unit supply and the increasing demand for luxury riverside properties. For investors seeking rental income, the proximity to corporate headquarters and international universities guarantees a high occupancy rate and competitive rental yields. Our flexible financial solutions, including zero-interest installment plans over eight years, make this a viable opportunity for both long-term wealth creation and short-term capital gains."
+        },
+        {
+          title: "Commitment to Sustainability",
+          content: "The Marq Riverside is designed with the future in mind. Sustainability is integrated into the core of the project, not just as a buzzword, but as a practical commitment to environmental responsibility. The compound utilizes greywater recycling systems for landscaping, energy-efficient LED lighting across all public areas, and building materials that provide superior thermal insulation, reducing the demand for artificial cooling. The integration of 'Smart Grid' technology allows the community to monitor and optimize energy consumption in real-time. Extensive botanical gardens spanning over 30% of the total project area help in carbon sequestration and provide a cooling effect, making the air fresher and the environment more pleasant. By choosing The Marq Riverside, you are not just choosing luxury; you are choosing a lifestyle that respects the planet."
+        },
+        {
+          title: "Safety, Privacy, and Community",
+          content: "In an increasingly busy world, privacy and security are the ultimate luxuries. The Marq Riverside is a fully gated, 24/7 monitored community with advanced AI-powered security systems that identify and address potential safety concerns before they arise. Professional concierge services act as the guardians of your convenience, managing everything from guest arrivals to personal errands. Beyond security, the project fosters a true sense of belonging. The 'Riverside Social Club' is a vibrant hub where residents can network, celebrate milestones, or simply enjoy a coffee with neighbors. Regular community events, workshops, and gatherings are organized to create a cohesive social fabric, ensuring that you are surrounded by like-minded individuals who share your values and aspirations. At The Marq Riverside, you don't just find a house; you find a community that feels like home."
+        }
+      ]
+    },
+    stats: [
+      { label: "Projected ROI", value: "25%+" },
+      { label: "Luxury Units", value: "250+" },
+      { label: "Delivery Date", value: "Q4 '27" }
+    ],
+    units: [
+      { type: "Executive Apartment", area: "75 m²", price: "4,500,000 EGP", beds: "1", availability: "Available" },
+      { type: "Premium Residence", area: "125 m²", price: "7,200,000 EGP", beds: "2", availability: "Limited" },
+      { type: "Family Suite", area: "170 m²", price: "9,800,000 EGP", beds: "3", availability: "Available" },
+      { type: "Luxury Penthouse", area: "215 m²", price: "13,500,000 EGP", beds: "4", availability: "Limited" },
+      { type: "Garden Duplex", area: "190 m²", price: "11,200,000 EGP", beds: "3", availability: "Available" },
+    ],
+    unitTypes: [
+      { type: "Apartments", startArea: "75 m²", startPrice: "4,500,000 EGP", beds: "1 - 3" },
+      { type: "Duplexes", startArea: "190 m²", startPrice: "11,200,000 EGP", beds: "3 - 4" },
+      { type: "Penthouses", startArea: "215 m²", startPrice: "13,500,000 EGP", beds: "4" },
+      { type: "Villas", startArea: "350 m²", startPrice: "25,000,000 EGP", beds: "5 - 6" },
+    ],
+    amenities: [
+      { icon: "Droplets", title: "Infinity Pools", desc: "Temperature-controlled swimming pools with cabanas." },
+      { icon: "Dumbbell", title: "Fitness Club", desc: "Professional gym with world-class trainers and equipment." },
+      { icon: "Trees", title: "Botanical Gardens", desc: "Verdant landscapes with exotic plants and walking paths." },
+      { icon: "ShieldCheck", title: "24/7 Security", desc: "Advanced AI-powered surveillance and trained security personnel." },
+      { icon: "Coffee", title: "Social Clubhouse", desc: "Exclusive community hub for networking and relaxation." },
+      { icon: "Car", title: "Underground Parking", desc: "Secure multi-level parking with EV charging stations." },
+      { icon: "Utensils", title: "Gourmet Dining", desc: "Fine dining restaurants and artisanal cafes within the gate." },
+      { icon: "Smartphone", title: "Smart Home System", desc: "Fully integrated automation for lighting, climate, and security." },
+      { icon: "Tv", title: "Cinema Room", desc: "Private luxurious screening room for community residents." },
+      { icon: "Users", title: "Business Center", desc: "Fully equipped co-working spaces and meeting rooms." },
+      { icon: "Sparkles", title: "Wellness Spa", desc: "Complete spa facilities including sauna and steam rooms." },
+      { icon: "Info", title: "Concierge Services", desc: "White-glove concierge for all your daily requirements." },
+    ],
+    paymentPlans: [
+      {
+        name: "Classic Plan",
+        description: "Balanced entry for long-term ownership with minimal upfront cost.",
+        details: [
+          "10% Down Payment",
+          "0% Interest rate",
+          "8 Years continuous installments",
+          "8% Maintenance fee",
+          "Delivery in 2027"
+        ],
+        discount: "5% Launch Discount"
+      },
+      {
+        name: "Investor Plan",
+        description: "Optimized for high ROI with shorter commitment and larger discount.",
+        details: [
+          "20% Down Payment",
+          "0% Interest rate",
+          "5 Years installments",
+          "Immediate unit reservation",
+          "Higher priority in delivery"
+        ],
+        discount: "10% Investor Discount"
+      },
+      {
+        name: "Cash Option",
+        description: "Ideal for immediate full ownership with maximum savings.",
+        details: [
+          "100% Full Payment",
+          "No installments needed",
+          "Immediate contract finalization",
+          "Priority interior bespoking",
+          "Full unit handover guarantee"
+        ],
+        discount: "25% Cash Discount"
+      }
+    ],
+    faqs: [
+      { q: "Is The Marq Riverside suitable for investment?", a: "Absolutely. Given its strategic location on South 90th Street and the developer's track record, the project offers a projected capital appreciation of 25-30% before delivery." },
+      { q: "Are there interest-free installment options?", a: "Yes, our primary payment plan consists of a 10% down payment with the remaining balance spread over 8 years in equal installments with zero interest." },
+      { q: "Is the project legally registered?", a: "Yes, the project has all ministerial approvals and is fully registered with the New Urban Communities Authority (NUCA)." },
+      { q: "When is the estimated delivery date?", a: "Phase 1 is scheduled for handover in Q4 2027, with the final phase completing in mid-2028." },
+      { q: "What are the maintenance fees?", a: "Maintenance fees are set at 8% of the unit price, paid 6 months before delivery to ensure the long-term upkeep of the community." },
+      { q: "Can I request a modified interior design?", a: "We offer 'Marq Bespoke' services where you can customize the layout and finishes of your unit during construction." },
+      { q: "What defines the architectural style?", a: "The project follows a 'Modern Regency' philosophy, blending classical elegance with contemporary minimalist architecture." },
+      { q: "Are pets allowed in the compound?", a: "Yes, The Marq Riverside is a pet-friendly community with dedicated walking areas and waste stations throughout the parks." },
+    ],
+    locationMarkers: [
+      { title: "AUC Campus", time: "5 mins" },
+      { title: "Middle Ring Road", time: "3 mins" },
+      { title: "Point 90 Mall", time: "5 mins" },
+      { title: "New Admin Capital", time: "15 mins" },
+    ]
+  }
+};

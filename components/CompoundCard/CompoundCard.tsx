@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { MapPin, Building2, TrendingUp, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
@@ -75,10 +76,10 @@ export default function CompoundCard({ compound }: CompoundCardProps) {
           </span>
         </div>
 
-        <button className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)">
-          View Properties
+        <Link href={`/compounds/${compound.name}`} className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)">
+          View Details
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </Link>
       </div>
     </div>
   );
