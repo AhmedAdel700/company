@@ -11,7 +11,17 @@ const ITEMS_PER_PAGE = 12;
 
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const categories = [
+    "All",
+    "Developers News",
+    "Buying Guides",
+    "Market Updates",
+    "Investment Tips",
+    "Comparisons",
+  ];
 
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -19,13 +29,18 @@ export default function BlogsPage() {
 
   // Filter blogs based on search query
   const filteredBlogs = useMemo(() => {
-    return blogPosts.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.author.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [searchQuery]);
+    return blogPosts.filter((post) => {
+      const matchesSearch = 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.author.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+      
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
@@ -44,12 +59,17 @@ export default function BlogsPage() {
     setCurrentPage(1); // Reset to first page on search
   };
 
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page on filter change
+  };
+
   return (
-    <div className="min-h-screen bg-(--color-background) pb-20">
+    <div className="min-h-screen bg-(--color-background)">
       {/* Premium Header Section */}
-      <div className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-fit lg:min-h-[60vh] flex items-center justify-center overflow-hidden py-24 lg:py-0">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 text-(--color-background)">
           <Image
             src={hero1}
             alt="Blogs Background"
@@ -77,7 +97,7 @@ export default function BlogsPage() {
           </p>
 
           {/* Premium Search Bar */}
-          <div className="max-w-3xl mx-auto relative group">
+          <div className="max-w-3xl mx-auto relative group mb-12">
             {/* Glow effect matching brand color */}
             <div className="absolute -inset-1 bg-linear-to-r from-(--color-secondary) to-(--color-primary-light) rounded-2xl blur opacity-40 group-hover:opacity-70 transition duration-500" />
             
@@ -92,11 +112,28 @@ export default function BlogsPage() {
               />
             </div>
           </div>
+
+          {/* Category Filter Bar */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => handleCategoryChange(category)}
+                className={`px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 backdrop-blur-md cursor-pointer ${
+                  selectedCategory === category
+                    ? "bg-(--color-secondary) text-white shadow-lg scale-105"
+                    : "bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 hover:text-white"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12 md:py-20 max-w-7xl">
+      <div className="container mx-auto px-4 py-12 max-w-7xl">
         {/* Results Count */}
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-(--color-text-primary) flex items-center gap-2">

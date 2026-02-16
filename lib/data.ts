@@ -314,7 +314,7 @@ export const blogPosts = [
     readTime: "5 min",
     image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
-    category: "Investment",
+    category: "Investment Tips",
   },
   {
     id: 2,
@@ -327,20 +327,20 @@ export const blogPosts = [
     readTime: "8 min",
     image:
       "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=600&fit=crop",
-    category: "Guides",
+    category: "Buying Guides",
   },
   {
     id: 3,
-    title: "Smart Home Features That Increase Property Value",
+    title: "Developer Spotlight: Emaar Misr's New Landmarks",
     excerpt:
-      "Learn how modern technology and smart home integrations can boost your property's market value.",
+      "A deep dive into the latest projects and strategic expansions of Emaar Misr across the Egyptian landscape.",
     author: "Omar Khalil",
     authorImage: "https://i.pravatar.cc/150?img=33",
     date: "Feb 5, 2026",
     readTime: "6 min",
     image:
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
-    category: "Technology",
+    category: "Developers News",
   },
   {
     id: 4,
@@ -353,20 +353,20 @@ export const blogPosts = [
     readTime: "7 min",
     image:
       "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop",
-    category: "Market Analysis",
+    category: "Market Updates",
   },
   {
     id: 5,
-    title: "Financing Options: Getting the Best Mortgage Deal",
+    title: "New Cairo vs. Sheikh Zayed: Which is Better?",
     excerpt:
-      "Navigate the world of real estate financing with our comprehensive guide to securing the best rates.",
+      "A comprehensive comparison of Egypt's two most popular residential hubs for modern living.",
     author: "Khaled Adel",
     authorImage: "https://i.pravatar.cc/150?img=15",
     date: "Jan 30, 2026",
     readTime: "9 min",
     image:
       "https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&h=600&fit=crop",
-    category: "Finance",
+    category: "Comparisons",
   },
   {
     id: 6,
@@ -379,8 +379,41 @@ export const blogPosts = [
     readTime: "6 min",
     image:
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=600&fit=crop",
-    category: "Lifestyle",
+    category: "Market Updates",
   },
+  {
+    id: 7,
+    title: "SODIC's Latest Milestone in New Zayed",
+    excerpt: "SODIC announces the completion of its newest phase in New Zayed, setting new standards for urban living.",
+    author: "Hassan Ali",
+    authorImage: "https://i.pravatar.cc/150?img=11",
+    date: "Jan 25, 2026",
+    readTime: "4 min",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+    category: "Developers News",
+  },
+  {
+    id: 8,
+    title: "Why You Should Invest in North Coast Now",
+    excerpt: "The North Coast market is booming. Here's why investors are flocking to Ras El Hekma this season.",
+    author: "Nour Kamel",
+    authorImage: "https://i.pravatar.cc/150?img=32",
+    date: "Jan 20, 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1548512140-5e368725832a?w=800&h=600&fit=crop",
+    category: "Investment Tips",
+  },
+  {
+    id: 9,
+    title: "Apartment vs Villa: The Ultimate Real Estate Choice",
+    excerpt: "Choosing between an apartment and a villa? We breakdown maintenance, privacy, and ROI for both.",
+    author: "Yasmine Zayed",
+    authorImage: "https://i.pravatar.cc/150?img=44",
+    date: "Jan 15, 2026",
+    readTime: "10 min",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+    category: "Comparisons",
+  }
 ];
 
 export const compoundDetailsData: Record<number, any> = {
