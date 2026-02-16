@@ -77,6 +77,7 @@ export default function Header({ type = "popup" }: HeaderProps) {
               <Link
                 key={item.name}
                 href={item.href}
+                prefetch
                 className={`relative text-base font-medium transition-all duration-300 hover:scale-105 ${
                   isActive
                     ? "text-[var(--color-secondary)] font-bold scale-105"

@@ -79,7 +79,7 @@ export default function BlogsPage() {
             quality={100}
           />
           <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-0 bg-linear-to-t from-(--color-background) via-transparent to-transparent" />
+          {/* <div className="absolute inset-0 bg-linear-to-t from-(--color-background)/50 via-transparent to-transparent" /> */}
         </div>
 
         <div className="container mx-auto px-4 relative z-10 text-center">
