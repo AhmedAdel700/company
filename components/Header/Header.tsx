@@ -32,32 +32,16 @@ export default function Header({ type = "popup" }: HeaderProps) {
   ];
 
   const [mounted, setMounted] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     setMounted(true);
-
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-[var(--color-background-alt)] text-[var(--color-text-primary)] shadow-md"
-          : "bg-transparent text-[var(--color-text-primary)]"
-        }`}
+      className="fixed lg:px-4 top-0 lg:top-2 2xl:top-3 left-0 right-0 z-50 text-(--color-text-primary) transition-all duration-500 animate-fade-in-down"
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="lg:container mx-auto px-4 h-16 flex items-center justify-between lg:rounded-full bg-(--color-background-alt)/80 backdrop-blur-md">
         {/* Logo */}
         <Link
           href="/"
@@ -67,7 +51,7 @@ export default function Header({ type = "popup" }: HeaderProps) {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href ||
@@ -79,15 +63,15 @@ export default function Header({ type = "popup" }: HeaderProps) {
                 href={item.href}
                 prefetch
                 className={`relative text-base font-medium transition-all duration-300 hover:scale-105 ${isActive
-                    ? "text-[var(--color-secondary)] font-bold scale-105"
-                    : "hover:text-[var(--color-secondary)]"
+                  ? "text-[var(--color-secondary)] font-bold scale-105"
+                  : "hover:text-[var(--color-secondary)]"
                   }`}
               >
                 {item.name}
                 <span
                   className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-300 ${isActive
-                      ? "w-full bg-[var(--color-secondary)]"
-                      : "w-0 bg-[var(--color-secondary)] group-hover:w-full"
+                    ? "w-full bg-[var(--color-secondary)]"
+                    : "w-0 bg-[var(--color-secondary)] group-hover:w-full"
                     }`}
                 />
               </Link>
@@ -114,7 +98,7 @@ export default function Header({ type = "popup" }: HeaderProps) {
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           {type === "drawer" ? (
             <DrawerMenu navItems={navItems} locale={locale} />
           ) : (

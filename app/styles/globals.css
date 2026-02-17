@@ -9,7 +9,7 @@
   --color-accent: #0284c7;
   --color-background: #f0f9ff;
   --color-background-alt: #f0f9ff;
-  --color-text-primary: #0c4a6e;
+  --color-text-primary: #196692;
   --color-text-secondary: #075985;
   --hero: #0369a1;
   --border-color: #bae6fd;
@@ -49,12 +49,10 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    #f0f9ff 50%,
-    #e0f2fe 100%
-  );
+  background: linear-gradient(to bottom,
+      #ffffff 0%,
+      #f0f9ff 50%,
+      #e0f2fe 100%);
 }
 
 :root.dark body {
@@ -67,53 +65,45 @@ button {
 
 .section-gradient {
   background:
-    radial-gradient(
-      ellipse at top left,
+    radial-gradient(ellipse at top left,
       rgba(14, 165, 233, 0.08) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at bottom right,
+      transparent 50%),
+    radial-gradient(ellipse at bottom right,
       rgba(56, 189, 248, 0.06) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      135deg,
+      transparent 50%),
+    linear-gradient(135deg,
       var(--gradient-start) 0%,
       var(--gradient-mid) 50%,
-      var(--gradient-end) 100%
-    );
+      var(--gradient-end) 100%);
 }
 
 :root.dark .section-gradient {
   background:
-    radial-gradient(
-      ellipse at top left,
+    radial-gradient(ellipse at top left,
       rgba(3, 105, 161, 0.3) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at bottom right,
+      transparent 50%),
+    radial-gradient(ellipse at bottom right,
       rgba(3, 105, 161, 0.3) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      135deg,
+      transparent 50%),
+    linear-gradient(135deg,
       var(--gradient-start) 0%,
       var(--gradient-mid) 50%,
-      var(--gradient-end) 100%
-    );
+      var(--gradient-end) 100%);
 }
 
 /* ------------------------- Start Of Scrollbar Styles ------------------------- */
 * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
+  /* Chrome, Safari, Edge */
 }
+
 /* ------------------------- End Of Scrollbar Styles ------------------------- */
 
 /* Marquee Animation */
@@ -121,6 +111,7 @@ button {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -138,9 +129,28 @@ button {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(-50%);
   }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s ease-out 2s forwards;
+  opacity: 0;
+  /* Ensure it starts hidden */
 }
 
 .animate-marquee-vertical {
