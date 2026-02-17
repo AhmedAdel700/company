@@ -23,9 +23,10 @@ export default function Header({ type = "popup" }: HeaderProps) {
   const navItems = [
     { name: t("Home"), href: "/" },
     { name: t("Cities"), href: "/cities" },
-    { name: t("Developers"), href: "/developers" },
     { name: t("Compounds"), href: "/compounds" },
+    { name: t("Developers"), href: "/developers" },
     { name: t("Best Deals"), href: "/best-deals" },
+    { name: t("Resale"), href: "/resale" },
     { name: t("Blogs"), href: "/blogs" },
     { name: t("Contact"), href: "/contact-us" },
   ];
@@ -51,11 +52,10 @@ export default function Header({ type = "popup" }: HeaderProps) {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-[var(--color-background-alt)] text-[var(--color-text-primary)] shadow-md"
           : "bg-transparent text-[var(--color-text-primary)]"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -78,19 +78,17 @@ export default function Header({ type = "popup" }: HeaderProps) {
                 key={item.name}
                 href={item.href}
                 prefetch
-                className={`relative text-base font-medium transition-all duration-300 hover:scale-105 ${
-                  isActive
+                className={`relative text-base font-medium transition-all duration-300 hover:scale-105 ${isActive
                     ? "text-[var(--color-secondary)] font-bold scale-105"
                     : "hover:text-[var(--color-secondary)]"
-                }`}
+                  }`}
               >
                 {item.name}
                 <span
-                  className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-300 ${
-                    isActive
+                  className={`absolute -bottom-1 left-0 h-0.5 rounded-full transition-all duration-300 ${isActive
                       ? "w-full bg-[var(--color-secondary)]"
                       : "w-0 bg-[var(--color-secondary)] group-hover:w-full"
-                  }`}
+                    }`}
                 />
               </Link>
             );

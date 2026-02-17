@@ -4,28 +4,42 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { developers } from "@/lib/data";
-import { ArrowRight, Building2, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Building2, Search } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import hero1 from "@/app/images/hero1.avif";
+import PageHero from "@/components/General/PageHero";
+import FilterSearch from "@/components/General/FilterSearch";
+import FilterDropdown from "@/components/General/FilterDropdown";
+import Pagination from "@/components/General/Pagination";
+import { ArrowUpDown, TrendingUp } from "lucide-react";
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 12;
 
 export default function DevelopersPage() {
   const t = useTranslations("developers");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("name");
 
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Filter developers based on search query
+  // Filter and Sort developers
   const filteredDevelopers = useMemo(() => {
-    return developers.filter((dev) =>
+    let result = developers.filter((dev) =>
       dev.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  }, [searchQuery]);
+
+    if (sortBy === "projects") {
+      result.sort((a, b) => b.projects - a.projects);
+    } else {
+      result.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return result;
+  }, [searchQuery, sortBy]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredDevelopers.length / ITEMS_PER_PAGE);
@@ -45,70 +59,39 @@ export default function DevelopersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-(--color-background) pb-20">
-       {/* Premium Header Section */}
-       <div className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={hero1}
-            alt="Developers Background"
-            fill
-            className="object-cover parallax-bg"
-            priority
-            quality={100}
-          />
-          <div className="absolute inset-0 bg-black/30" />
-          {/* <div className="absolute inset-0 bg-linear-to-t from-(--color-background) via-transparent to-transparent" /> */}
-        </div>
+    <div className="min-h-screen bg-(--color-background)">
+      <PageHero
+        title={<>{t("heroTitle")} <span className="text-(--color-secondary)">{t("heroHighlight")}</span></>}
+        subtitle={t("description")}
+        image={hero1}
+      />
 
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium tracking-wider uppercase mb-4">
-            {t("eyebrow")}
-          </span>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
-            {t("heroTitle")}{" "} <span className="text-(--color-secondary)">{t("heroHighlight")}</span>
-          </h1>
-          
-          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-light drop-shadow-md">
-            {t("description")}
-          </p>
-
-          {/* Premium Search Bar */}
-          <div className="max-w-3xl mx-auto relative group">
-            {/* Glow effect matching brand color */}
-            <div className="absolute -inset-1 bg-linear-to-r from-(--color-secondary) to-(--color-primary-light) rounded-2xl blur opacity-40 group-hover:opacity-70 transition duration-500" />
-            
-            <div className="relative flex items-center p-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl">
-              <Search className="w-6 h-6 ms-4 text-(--color-secondary)" />
-              <input
-                type="text"
-                placeholder={t("searchPlaceholder")}
-                value={searchQuery}
-                onChange={handleSearch}
-                className="w-full px-4 py-4 bg-transparent border-none outline-none text-white placeholder:text-white/60 text-lg font-medium"
-              />
-            </div>
+      <div className="container mx-auto px-4 py-12 max-w-7xl">
+        {/* Search & Filter Bar */}
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-10">
+          <div className="flex-1 w-full">
+            <FilterSearch
+              value={searchQuery}
+              onChange={handleSearch}
+              placeholder={t("searchPlaceholder")}
+            />
           </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-12 md:py-20 max-w-7xl">
         {/* Results Count */}
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-(--color-text-primary) flex items-center gap-2">
             <Building2 className="w-5 h-5 text-(--color-secondary)" />
             {filteredDevelopers.length} {t("resultsFound")}
           </h2>
-          <div className="text-sm text-(--color-text-secondary)">
-             {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
+          <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-1.5 rounded-lg bg-(--color-background-alt) border border-(--border-color)">
+            {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
           </div>
         </div>
 
         {/* Developers Grid */}
         {currentDevelopers.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {currentDevelopers.map((dev) => (
               <Link
                 key={dev.id}
@@ -125,7 +108,7 @@ export default function DevelopersPage() {
                       className="object-cover drop-shadow-sm"
                     />
                   </div>
-                  
+
                   {/* Decorative Elements */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-(--color-secondary)/5 rounded-bl-full -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-150" />
                   <div className="absolute bottom-0 left-0 w-16 h-16 bg-(--color-primary)/5 rounded-tr-full -ml-8 -mb-8 transition-transform duration-500 group-hover:scale-150" />
@@ -136,7 +119,7 @@ export default function DevelopersPage() {
                   <h3 className="text-2xl font-bold text-(--color-text-primary) mb-2 text-center">
                     {dev.name}
                   </h3>
-                  
+
                   <div className="flex items-center justify-center gap-2 text-(--color-text-secondary) mb-6">
                     <Building2 className="w-5 h-5 text-(--color-secondary)" />
                     <span className="font-medium">
@@ -154,59 +137,25 @@ export default function DevelopersPage() {
                 </div>
               </Link>
             ))}
-            </div>
+          </div>
         ) : (
-            <div className="text-center py-20">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-(--color-background-alt) rounded-full mb-4">
-                  <Search className="w-8 h-8 text-(--color-text-secondary)" />
-                </div>
-                <h3 className="text-xl font-bold text-(--color-text-primary) mb-2">{t("noResults")}</h3>
-                <p className="text-(--color-text-secondary)">
-                  {t("noResultsDesc")}
-                </p>
+          <div className="text-center py-20">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-(--color-background-alt) rounded-full mb-4">
+              <Search className="w-8 h-8 text-(--color-text-secondary)" />
             </div>
-        )}
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-16">
-            <button
-              onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="p-3 rounded-xl border border-(--color-text-secondary)/20 text-(--color-text-primary) disabled:opacity-50 disabled:cursor-not-allowed hover:bg-(--color-background-alt) transition-colors cursor-pointer"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            {/* Page Numbers */}
-            <div className="flex items-center gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => {
-                const page = i + 1;
-                return (
-                   <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`w-10 h-10 rounded-xl font-bold transition-all duration-300 cursor-pointer ${
-                      currentPage === page
-                        ? "bg-(--color-secondary) text-white shadow-lg scale-110"
-                        : "bg-(--color-background-alt) text-(--color-text-secondary) hover:bg-(--color-secondary)/10 hover:text-(--color-secondary)"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                )
-              })}
-            </div>
-
-            <button
-              onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className="p-3 rounded-xl border border-(--color-text-secondary)/20 text-(--color-text-primary) disabled:opacity-50 disabled:cursor-not-allowed hover:bg-(--color-background-alt) transition-colors cursor-pointer"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            <h3 className="text-xl font-bold text-(--color-text-primary) mb-2">{t("noResults")}</h3>
+            <p className="text-(--color-text-secondary)">
+              {t("noResultsDesc")}
+            </p>
           </div>
         )}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          className="mt-14"
+        />
       </div>
     </div>
   );
