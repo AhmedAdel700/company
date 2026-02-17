@@ -10,6 +10,7 @@ import Footer from "@/components/Footer/Footer";
 import SmoothScrollProvider from "@/Providers/SmoothScrollProvider";
 import { ThemeProvider } from "@/Providers/ThemeProvider";
 import TanStackProvider from "@/Providers/TanStackProvider";
+import ScrollToTop from "@/components/General/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default async function RootLayout({
                 {children}
                 <Footer />
               </SmoothScrollProvider>
+              <ScrollToTop />
             </ThemeProvider>
           </NextIntlClientProvider>
         </TanStackProvider>
