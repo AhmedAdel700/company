@@ -1,0 +1,36 @@
+{
+    "Hero": {
+        "title": "Emaar Misr",
+        "subtitle": "Building lifestyles, not just homes. A legacy of excellence in real estate development.",
+        "eyebrow": "Premium Developer"
+    },
+    "Overview": {
+        "title": "Company Overview",
+        "description": "Emaar Misr is a leading real estate developer in Egypt, known for its prestigious communities and commitment to quality. With a portfolio of iconic projects, we strive to create integrated lifestyles that redefine living standards.",
+        "stats": {
+            "projects": "Projects",
+            "awards": "Awards",
+            "years": "Years of Experience",
+            "happyClients": "Happy Clients"
+        }
+    },
+    "History": {
+        "title": "Our Journey & Achievements",
+        "description": "A timeline of milestones that defined our path to success."
+    },
+    "Awards": {
+        "title": "Awards & Certificates",
+        "description": "Recognition of our commitment to excellence and innovation."
+    },
+    "Projects": {
+        "currentTitle": "Current Projects",
+        "currentDescription": "Explore our ongoing developments offering modern living solutions.",
+        "completedTitle": "Completed Projects",
+        "completedDescription": "Our track record of delivered communities and successful handovers.",
+        "viewDetails": "View Details"
+    },
+    "Contact": {
+        "title": "Get in Touch",
+        "description": "Reach out to us for more information about our projects."
+    }
+}

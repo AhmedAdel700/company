@@ -6,10 +6,10 @@ interface PageHeroProps {
     subtitle?: string;
     image: StaticImageData | string;
     eyebrow?: string;
-    highlight?: string;
+    titleStyle?: string;
 }
 
-const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, image, eyebrow, highlight }) => {
+const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, image, eyebrow, titleStyle }) => {
     return (
         <div className="relative h-[25vh] min-h-[350px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -30,7 +30,7 @@ const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, image, eyebrow, hi
                         {eyebrow}
                     </span>
                 )}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 tracking-tight drop-shadow-lg">
+                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 tracking-tight drop-shadow-lg ${titleStyle}`}>
                     {title}
                 </h1>
 
