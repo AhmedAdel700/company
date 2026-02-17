@@ -10,6 +10,7 @@ import PageHero from "@/components/General/PageHero";
 import FilterSearch from "@/components/General/FilterSearch";
 import FilterDropdown from "@/components/General/FilterDropdown";
 import Pagination from "@/components/General/Pagination";
+import { useTranslations } from "next-intl";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -17,6 +18,7 @@ export default function CompoundsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedLocation, setSelectedLocation] = useState("All");
+  const t = useTranslations("compounds");
 
   // Get unique locations for filter
   const locationOptions = useMemo(() => {
@@ -96,7 +98,7 @@ export default function CompoundsPage() {
             {filteredCompounds.length} Compounds Found
           </h2>
           <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-1.5 rounded-lg bg-(--color-background-alt) border border-(--border-color)">
-            {currentPage} / {totalPages || 1}
+            {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
           </div>
         </div>
 

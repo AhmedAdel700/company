@@ -8,6 +8,7 @@ import hero1 from "@/app/images/hero1.avif";
 import PageHero from "@/components/General/PageHero";
 import FilterSearch from "@/components/General/FilterSearch";
 import Pagination from "@/components/General/Pagination";
+import { useTranslations } from "next-intl";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -15,6 +16,7 @@ export default function CitiesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [trendingOnly, setTrendingOnly] = useState(false);
+  const t = useTranslations("cities");
 
   // Filter cities based on search query and trending status
   const filteredCities = useMemo(() => {
@@ -71,7 +73,7 @@ export default function CitiesPage() {
             {filteredCities.length} Cities Found
           </h2>
           <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-1.5 rounded-lg bg-(--color-background-alt) border border-(--border-color)">
-            {currentPage} / {totalPages || 1}
+            {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
           </div>
         </div>
 

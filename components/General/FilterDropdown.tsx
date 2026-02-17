@@ -46,7 +46,7 @@ export default function FilterDropdown({
     };
 
     return (
-        <div ref={ref} className={`relative ${className}`}>
+        <div ref={ref} className={`relative ${className} min-w-60`}>
             {/* Trigger */}
             <button
                 onClick={() => setOpen((p) => !p)}

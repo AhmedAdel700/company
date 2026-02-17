@@ -12,6 +12,7 @@ import FilterDropdown from "@/components/General/FilterDropdown";
 import PriceRangeDropdown from "@/components/General/PriceRangeDropdown";
 import Pagination from "@/components/General/Pagination";
 import { MapPin, Banknote } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -22,6 +23,7 @@ export default function BestDealsPage() {
   const [selectedLocation, setSelectedLocation] = useState("All");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const t = useTranslations("best-deals");
 
   // Extract unique types and locations
   const propertyTypes = useMemo(() => ["All", ...new Set(deals.map(d => d.type))], []);
@@ -148,7 +150,7 @@ export default function BestDealsPage() {
             {filteredDeals.length} Deals Found
           </h2>
           <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-1.5 rounded-lg bg-(--color-background-alt) border border-(--border-color)">
-            {currentPage} / {totalPages || 1}
+            {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
           </div>
         </div>
 

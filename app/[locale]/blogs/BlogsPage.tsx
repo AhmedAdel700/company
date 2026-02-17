@@ -112,7 +112,7 @@ export default function BlogsPage() {
             {filteredBlogs.length} Articles Found
           </h2>
           <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-1.5 rounded-lg bg-(--color-background-alt) border border-(--border-color)">
-            {currentPage} / {totalPages || 1}
+            Page {currentPage} Of {totalPages || 1}
           </div>
         </div>
 

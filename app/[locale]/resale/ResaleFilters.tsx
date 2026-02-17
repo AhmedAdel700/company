@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import FilterSearch from "@/components/General/FilterSearch";
 import FilterDropdown from "@/components/General/FilterDropdown";
+import { useTranslations } from "next-intl";
 
 export const PROPERTY_TYPES = [
     "All",
@@ -67,6 +68,7 @@ export default function ResaleFilters({
     onClearFilters,
     onToggleFilters,
 }: ResaleFiltersProps) {
+    const t = useTranslations("resale");
     return (
         <div className="mb-10 space-y-5">
             {/* ── Search Bar ── */}
@@ -98,7 +100,6 @@ export default function ResaleFilters({
                         options={SORT_OPTIONS}
                         onChange={(val) => onSortChange({ target: { value: val } } as React.ChangeEvent<HTMLSelectElement>)}
                         icon={ArrowUpDown}
-                        className="w-48 sm:w-56"
                     />
 
                     {/* Mobile filter toggle */}
@@ -120,7 +121,7 @@ export default function ResaleFilters({
                     {hasActiveFilters && (
                         <button
                             onClick={onClearFilters}
-                            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
+                            className="flex items-center gap-1.5 px-4 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
                             style={{ backgroundColor: "var(--color-secondary)" }}
                         >
                             <X className="w-3.5 h-3.5" />
@@ -129,9 +130,9 @@ export default function ResaleFilters({
                     )}
 
                     {/* Page counter (desktop) */}
-                    <span className="hidden sm:inline-flex items-center px-3 py-2.5 rounded-xl bg-(--color-background-alt) border border-(--border-color) text-xs font-semibold text-(--color-text-secondary) tabular-nums">
-                        {currentPage} / {totalPages || 1}
-                    </span>
+                    <div className="text-sm text-(--color-text-secondary) font-semibold tabular-nums px-3 py-3 rounded-xl bg-(--color-background-alt) border border-(--border-color)">
+                        {t("pageInfo", { current: currentPage, total: totalPages || 1 })}
+                    </div>
                 </div>
             </div>
 

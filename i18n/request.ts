@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 const locales = ["en", "ar"] as const;
-const namespaces = ["home", "header", "footer", "contact", "developers", "best-deals", "blogs"] as const;
+const namespaces = ["home", "header", "footer", "contact", "developers", "best-deals", "blogs", "compounds", "cities", "resale"] as const;
 
 export default getRequestConfig(async () => {
   const h = await headers();
