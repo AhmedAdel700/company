@@ -6,12 +6,12 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { compounds, compoundDetailsData } from "@/lib/data";
 import CompoundCard from "@/components/CompoundCard/CompoundCard";
-import { 
-  MapPin, 
-  Building2, 
-  Calendar, 
-  CreditCard, 
-  CheckCircle2, 
+import {
+  MapPin,
+  Building2,
+  Calendar,
+  CreditCard,
+  CheckCircle2,
   ArrowRight,
   Droplets,
   Dumbbell,
@@ -115,13 +115,15 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
 
   const similarCompounds = compounds.filter(c => c.id !== compoundId).slice(0, 3);
 
+  const [activeHeroIdx, setActiveHeroIdx] = useState(0);
+
   return (
     <div ref={containerRef} className="overflow-x-hidden">
-      
+
       {/* 1. Responsive Hero Slider */}
       <section className="pt-24">
         <div className="container mx-auto px-4">
-          
+
           {/* Desktop Version (lg and up) */}
           <div className="hidden lg:flex gap-4 lg:h-112.5 xl:h-150">
             {details.heroImages.map((img: string, idx: number) => (
@@ -129,15 +131,10 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
                 key={idx}
                 className="relative rounded-xl overflow-hidden transition-all duration-700 ease-out cursor-pointer group border border-gray-700"
                 style={{
-                  flex: '1',
+                  flex: activeHeroIdx === idx ? '10' : '1',
                   minWidth: '30px'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.flex = '10';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.flex = '1';
-                }}
+                onMouseEnter={() => setActiveHeroIdx(idx)}
               >
                 <Image
                   src={heroImage}
@@ -174,7 +171,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
 
       <section className="container mx-auto px-4 py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-          
+
           {/* Logo and Title */}
           <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-start">
             <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg" style={{ borderColor: "var(--color-secondary)" }}>
@@ -217,7 +214,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
 
             {/* CTAs */}
             <div className="flex items-center gap-4">
-              <Link 
+              <Link
                 href={`https://wa.me/201234567890?text=I'm interested in ${compound?.name}`}
                 target="_blank"
                 className="w-14 h-13 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg bg-green-500"
@@ -225,7 +222,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
                 <Image src={whatsApp} alt="WhatsApp" width={32} height={32} />
               </Link>
               <button className="flex items-center gap-3 px-8 py-4 rounded-lg font-black text-sm uppercase tracking-widest text-white shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-                      style={{ backgroundColor: "var(--color-secondary)" }}>
+                style={{ backgroundColor: "var(--color-secondary)" }}>
                 Call Now
               </button>
             </div>
@@ -233,7 +230,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
         </div>
       </section>
 
-            {/* 7. Interactive Location Section */}
+      {/* 7. Interactive Location Section */}
       <section className="py-10 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -246,7 +243,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
               <div className="space-y-4">
                 {details.locationMarkers.map((mark: any, i: number) => (
                   <div key={i} className="flex items-center justify-between p-6 rounded-2xl border transition-all duration-300"
-                       style={{ backgroundColor: "var(--color-background-alt)", borderColor: "var(--border-color)" }}>
+                    style={{ backgroundColor: "var(--color-background-alt)", borderColor: "var(--border-color)" }}>
                     <div className="flex items-center gap-4">
                       <MapPin style={{ color: "var(--color-secondary)" }} />
                       <span className="font-bold" style={{ color: "var(--color-text-primary)" }}>{mark.title}</span>
@@ -260,7 +257,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
             </div>
 
             <div className="lg:col-span-7 h-150 rounded-xl overflow-hidden shadow-lg relative border-4"
-                 style={{ borderColor: "var(--color-background-alt)" }}>
+              style={{ borderColor: "var(--color-background-alt)" }}>
               {/* Google Maps Embed */}
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.123456789!2d31.4!3d30.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAwJzAwLjAiTiAzMcKwMjQnMDAuMCJF!5e0!3m2!1sen!2seg!4v1234567890"
@@ -304,11 +301,10 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
                     <td className="p-8" style={{ color: "var(--color-text-secondary)" }}>{unit.beds} BR</td>
                     <td className="p-8 font-bold text-lg" style={{ color: "var(--color-secondary)" }}>{unit.startPrice}</td>
                     <td className="p-8 text-right">
-                      <span className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-tighter ${
-                        idx % 3 === 0
-                        ? 'bg-orange-500/10 text-orange-500' 
+                      <span className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-tighter ${idx % 3 === 0
+                        ? 'bg-orange-500/10 text-orange-500'
                         : 'bg-green-500/10 text-green-500'
-                      }`}>
+                        }`}>
                         {idx % 3 === 0 ? 'Limited' : 'Available'}
                       </span>
                     </td>
@@ -327,12 +323,12 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
           {details.paymentPlans.map((plan: any, i: number) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className={`relative overflow-hidden p-12 rounded-[3rem] border-2 transition-all duration-500 group hover:shadow-3xl hover:-translate-y-2 ${i === 1 ? 'border-(--color-secondary) shadow-2xl scale-105 z-10' : ''}`}
-              style={{ 
-                backgroundColor: "var(--color-background-alt)", 
-                borderColor: i === 1 ? "var(--color-secondary)" : "var(--border-color)" 
+              style={{
+                backgroundColor: "var(--color-background-alt)",
+                borderColor: i === 1 ? "var(--color-secondary)" : "var(--border-color)"
               }}
             >
               {i === 1 && (
@@ -340,7 +336,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
                   Most Popular
                 </div>
               )}
-              
+
               <div className="mb-10">
                 <span className="text-[10px] font-black uppercase tracking-[0.35em] mb-5 block opacity-60" style={{ color: "var(--color-text-secondary)" }}>{plan.name}</span>
                 <div className="flex items-baseline gap-2 mb-4">
@@ -382,9 +378,9 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {details.amenities.map((item: any, idx: number) => (
               <div key={idx} className="p-8 rounded-3xl border"
-                   style={{ backgroundColor: "var(--color-background-alt)", borderColor: "var(--border-color)" }}>
+                style={{ backgroundColor: "var(--color-background-alt)", borderColor: "var(--border-color)" }}>
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
-                     style={{ backgroundColor: "var(--color-primary)", color: "var(--color-secondary)" }}>
+                  style={{ backgroundColor: "var(--color-primary)", color: "var(--color-secondary)" }}>
                   {iconMap[item.icon]}
                 </div>
                 <h3 className="text-xl font-bold mb-3" style={{ color: "var(--color-text-primary)" }}>{item.title}</h3>
@@ -396,25 +392,25 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
       </section>
 
 
-            {/* 2. Comprehensive Description Section */}
+      {/* 2. Comprehensive Description Section */}
       <section className="container mx-auto px-4 py-24">
         <div className="max-w-6xl mx-auto">
           {/* Info Badges */}
           <div className="flex flex-wrap gap-2 mb-10">
             {infoCards.filter(c => c.label !== "Payment Plan").map((card, idx) => (
               <div key={idx} className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border"
-                   style={{ borderColor: "var(--border-color)", color: "var(--color-text-secondary)" }}>
+                style={{ borderColor: "var(--border-color)", color: "var(--color-text-secondary)" }}>
                 <span style={{ color: "var(--color-secondary)" }}>{card.icon}</span>
                 <span>{card.value}</span>
               </div>
             ))}
           </div>
-          
+
           {/* Main Heading */}
           <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight" style={{ color: "var(--color-text-primary)" }}>
             New Cairo is Most Desirable <span style={{ color: "var(--color-secondary)" }}>Address</span>
           </h2>
-          
+
           {/* Comprehensive Description */}
           <div className="prose prose-lg dark:prose-invert font-light leading-relaxed mb-16" style={{ color: "var(--color-text-secondary)" }}>
             <p className="text-xl mb-6" style={{ color: "var(--color-text-primary)", fontWeight: 500 }}>
@@ -452,18 +448,18 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {details.faqs.map((faq: any, idx: number) => (
               <div key={idx} className="rounded-xl border overflow-hidden transition-all duration-500"
-                   style={{ backgroundColor: "var(--color-background)", borderColor: "var(--border-color)" }}>
-                <button 
+                style={{ backgroundColor: "var(--color-background)", borderColor: "var(--border-color)" }}>
+                <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-6 cursor-pointer text-left hover:bg-(--color-secondary-5) transition-colors"
                 >
                   <span className="text-base font-bold pr-4" style={{ color: "var(--color-text-primary)" }}>{faq.q}</span>
                   <div className="shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-lg"
-                       style={{ 
-                         backgroundColor: openFaq === idx ? "var(--color-secondary)" : "var(--color-primary)", 
-                         color: openFaq === idx ? "white" : "var(--color-secondary)",
-                         transform: openFaq === idx ? "rotate(180deg)" : "rotate(0deg)"
-                       }}>
+                    style={{
+                      backgroundColor: openFaq === idx ? "var(--color-secondary)" : "var(--color-primary)",
+                      color: openFaq === idx ? "white" : "var(--color-secondary)",
+                      transform: openFaq === idx ? "rotate(180deg)" : "rotate(0deg)"
+                    }}>
                     <ChevronDown className="w-5 h-5" />
                   </div>
                 </button>
