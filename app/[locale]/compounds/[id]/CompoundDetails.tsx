@@ -126,7 +126,7 @@ export default function CompoundDetails({ params }: { params: { id: string } }) 
 
           {/* Desktop Version (lg and up) */}
           <div className="hidden lg:flex gap-4 lg:h-112.5 xl:h-150">
-            {details.heroImages.map((idx: number) => (
+            {details.heroImages.map((img: string, idx: number) => (
               <div
                 key={idx}
                 className="relative rounded-xl overflow-hidden transition-all duration-700 ease-out cursor-pointer group border border-gray-700"
