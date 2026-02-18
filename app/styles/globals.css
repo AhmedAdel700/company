@@ -148,7 +148,7 @@ button {
 }
 
 .animate-fade-in-down {
-  animation: fade-in-down 0.8s ease-out 2s forwards;
+  animation: fade-in-down 0.8s ease-out 0.5s forwards;
   opacity: 0;
   /* Ensure it starts hidden */
 }
