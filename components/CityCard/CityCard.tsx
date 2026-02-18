@@ -83,10 +83,10 @@ export default function CityCard({ city }: CityCardProps) {
         </div>
 
         {/* Button */}
-        <button className="w-full flex items-center justify-center gap-2 py-3 text-white rounded-xl font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer bg-(--color-secondary) shadow-md hover:shadow-lg">
+        <Link href={`/cities/${city.name}`} className="w-full flex items-center justify-center gap-2 py-3 text-white rounded-xl font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer bg-(--color-secondary) shadow-md hover:shadow-lg">
           View Properties
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { ArrowRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import hero1 from "@/app/images/hero1.avif";

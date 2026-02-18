@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Image from "next/image";
 import { deals } from "@/lib/data";
 import DealCard from "@/components/BestDeals/DealCard";
 import { Search, Tag } from "lucide-react";
@@ -11,7 +10,7 @@ import FilterSearch from "@/components/General/FilterSearch";
 import FilterDropdown from "@/components/General/FilterDropdown";
 import PriceRangeDropdown from "@/components/General/PriceRangeDropdown";
 import Pagination from "@/components/General/Pagination";
-import { MapPin, Banknote } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const ITEMS_PER_PAGE = 9;

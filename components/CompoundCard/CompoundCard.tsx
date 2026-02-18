@@ -10,6 +10,7 @@ interface CompoundCardProps {
     name: string;
     location: string;
     properties: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image: any;
     trend: string;
   };
@@ -26,15 +27,9 @@ export default function CompoundCard({ compound }: CompoundCardProps) {
     >
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
-        {/* Use Image component if possible, but keeping img for external URLs compatibility if needed, 
-            though implementation plan suggested moving data. 
-            The mocked data uses strings for images, except for cities which used import. 
-            Let's support both if possible or just use img tag for now as per previous FeaturedCompounds.tsx 
-            Wait, I should check if I can use Next.js Image. 
-            The original FeaturedCompounds used <img> tag with external URLs. 
-            I will use <img> for now to match the data structure which has URL strings.
-        */}
-        <img
+        <Image
+          width={400}
+          height={400}
           src={compound.image}
           alt={compound.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -76,7 +71,10 @@ export default function CompoundCard({ compound }: CompoundCardProps) {
           </span>
         </div>
 
-        <Link href={`/compounds/${compound.name}`} className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)">
+        <Link
+          href={`/compounds/${compound.name}`}
+          className="w-full flex items-center justify-center gap-2 py-3 mt-auto text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer bg-(--color-secondary)"
+        >
           View Details
           <ArrowRight className="w-4 h-4" />
         </Link>

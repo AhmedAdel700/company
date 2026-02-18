@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Image from "next/image";
 import { compounds } from "@/lib/data";
 import CompoundCard from "@/components/CompoundCard/CompoundCard";
-import { Search, MapPin, ChevronLeft, ChevronRight, HomeIcon } from "lucide-react";
+import { Search, MapPin, HomeIcon } from "lucide-react";
 import hero1 from "@/app/images/hero1.avif";
 import PageHero from "@/components/General/PageHero";
 import FilterSearch from "@/components/General/FilterSearch";

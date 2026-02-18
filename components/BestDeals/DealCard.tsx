@@ -1,5 +1,7 @@
 import React from "react";
 import { Tag, MapPin, Home, Clock, ArrowRight, Bed } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 
 export interface Deal {
   id: number;
@@ -31,9 +33,11 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
     >
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
-        <img
+        <Image
           src={deal.image}
           alt={deal.title}
+          width={400}
+          height={400}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
 
@@ -111,13 +115,14 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
           </div>
         </div>
 
-        <button
+        <Link
+          href={`/best-deals/${deal.title}`}
           className="w-full flex items-center justify-center gap-2 py-3 text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 cursor-pointer"
           style={{ backgroundColor: "var(--color-secondary)" }}
         >
           View Details
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </Link>
       </div>
     </div>
   );

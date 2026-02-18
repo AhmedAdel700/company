@@ -15,7 +15,7 @@ const ITEMS_PER_PAGE = 12;
 export default function CitiesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [trendingOnly, setTrendingOnly] = useState(false);
+  const [trendingOnly] = useState(false);
   const t = useTranslations("cities");
 
   // Filter cities based on search query and trending status

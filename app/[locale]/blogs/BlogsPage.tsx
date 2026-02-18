@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import Image from "next/image";
 import { blogPosts } from "@/lib/data";
 import BlogCard from "@/components/LatestBlogs/BlogCard";
 import { Search, Calendar } from "lucide-react";

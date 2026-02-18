@@ -92,7 +92,7 @@ export default function HeroSearch() {
         <div className="absolute -inset-1 bg-linear-to-r from-(--color-primary-light) to-(--color-secondary) rounded-2xl blur opacity-25" />
         <div className="relative flex items-center p-2 bg-(--color-background)/90 backdrop-blur-md border border-(--color-text-secondary)/10 rounded-xl shadow-2xl">
           <div className="flex items-center flex-1">
-            <Search className="w-6 h-6 ml-4 text-(--color-secondary)" />
+            <Search className="w-6 h-6 ms-4 text-(--color-secondary)" />
             <input
               type="text"
               value={searchQuery}

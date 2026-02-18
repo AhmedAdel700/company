@@ -79,7 +79,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
           </div>
 
           <Link
-            href="/blogs"
+            href={`/blogs/${post.title}`}
             className="flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300 hover:scale-110"
             style={{
               backgroundColor: "var(--color-primary)",
