@@ -86,7 +86,7 @@ export default function DrawerMenu({ navItems, locale }: DrawerMenuProps) {
             </div>
 
             {/* Language + Theme Section */}
-            <div className="flex flex-col gap-3 mt-4">
+            <div className="flex flex-col gap-3 mt-4 mb-6">
               {/* Language */}
               <div className="p-4 rounded-2xl bg-(--color-background-alt)/50 border border-(--color-text-primary)/10 transition-all duration-300 hover:bg-(--color-background-alt) flex items-center justify-between text-(--color-text-primary)">
                 <span className="font-medium">{t("Switch Language")}</span>

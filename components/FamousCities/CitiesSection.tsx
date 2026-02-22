@@ -35,6 +35,7 @@ export default function CitiesSlider() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
+    setTouchEndX(e.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
