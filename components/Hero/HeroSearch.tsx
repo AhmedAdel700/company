@@ -117,7 +117,7 @@ export default function HeroSearch() {
               </p>
               <ul className="space-y-1">
                 {filteredResults.map((item) => (
-                  <Link href={`/${item.herf}`} key={item.id}>
+                  <Link href={`${item.type === "location" ? "compounds" : "developers"}/${item.herf}`} key={item.id}>
                     <li className="flex items-center justify-between p-3 hover:bg-(--color-background-alt) rounded-lg cursor-pointer transition-all group">
                       <div className="flex items-center gap-3">
                         <div className="bg-(--color-text-secondary)/5 p-2 rounded-full group-hover:bg-white transition-colors shadow-sm">
